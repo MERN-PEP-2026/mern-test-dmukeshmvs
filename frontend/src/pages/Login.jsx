@@ -5,19 +5,20 @@ function Login(){
   const[password,setPassword]=useState("");
   const[msg,setMsg]=useState("");
 
-  const submit=async(e)=>{
+    const submit=async(e)=>{
     e.preventDefault();
-
     const res=await fetch("http://localhost:5000/api/auth/login",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({email:email,password:password})
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({email:email,password:password})
     });
-
     const data=await res.json();
     setMsg(data.msg);
-    if(data.token)sessionStorage.setItem("token",data.token);
-  };
+    if(data.token){
+        sessionStorage.setItem("token",data.token);
+        window.location="/tasks";
+    }
+    };
 
   return(
     <div style={{width:"300px",margin:"20px auto",display:"flex",flexDirection:"column",gap:"10px"}}>

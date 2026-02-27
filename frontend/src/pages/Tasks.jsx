@@ -6,6 +6,10 @@ function Tasks(){
   const[description,setDescription]=useState("");
   const token=sessionStorage.getItem("token");
 
+    if(!token){
+        return window.location="/login";
+    }
+
   const load=async()=>{
 
     const res=await fetch("http://localhost:5000/api/tasks",{
