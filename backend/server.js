@@ -1,13 +1,25 @@
-import mongoose from"mongoose";
+import express from"express";
+import dotenv from"dotenv";
+import connectDB from"./config/db.js";
 
-const connectDB=async()=>{
-  try{
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB Connected");
-  }catch(err){
-    console.log("DB Error:",err.message);
-    process.exit(1);
-  }
-};
+dotenv.config();
+connectDB();
 
-export default connectDB;
+import authRoutes from"./routes/authRoutes.js";
+import taskRoutes from"./routes/taskRoutes.js";
+
+
+const app=express();
+
+app.use(express.json());
+
+app.use("/api/auth",authRoutes);
+app.use("/api/tasks",taskRoutes);
+
+app.get("/",(req,res)=>{
+  res.send("Backend running");
+});
+
+app.listen(5000,()=>{
+  console.log("Server running on 5000");
+});
