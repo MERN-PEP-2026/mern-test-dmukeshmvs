@@ -5,33 +5,57 @@ function Login(){
   const[password,setPassword]=useState("");
   const[msg,setMsg]=useState("");
 
-    const submit=async(e)=>{
+  const submit=async(e)=>{
     e.preventDefault();
     const res=await fetch("http://localhost:5000/api/auth/login",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({email:email,password:password})
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email:email,password:password})
     });
     const data=await res.json();
     setMsg(data.msg);
     if(data.token){
-        sessionStorage.setItem("token",data.token);
-        window.location="/tasks";
+      sessionStorage.setItem("token",data.token);
+      window.location="/tasks";
     }
-    };
+  };
 
   return(
-    <div style={{width:"300px",margin:"20px auto",display:"flex",flexDirection:"column",gap:"10px"}}>
-      <h2>Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 p-6">
+      <div className="w-96 p-8 bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-white/40 animate-[fadeIn_0.6s_ease]">
 
-      <form onSubmit={submit} style={{display:"flex",flexDirection:"column",gap:"10px"}}>
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Email"/>
-        <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Password"/>
-        <button type="submit">Login</button>
-      </form>
+        <h1 className="text-center text-3xl font-semibold text-gray-800 mb-6">
+          Login
+        </h1>
 
-      <p>{msg}</p>
-    
+        <form onSubmit={submit} className="flex flex-col space-y-4">
+
+          <input
+            className="p-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition"
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+            placeholder="Email"
+          />
+
+          <input
+            type="password"
+            className="p-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-800 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-300 transition"
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
+            placeholder="Password"
+          />
+
+          <button
+            className="p-3 rounded-lg bg-blue-600 text-white text-center font-medium hover:bg-blue-700 transition active:scale-95 shadow-lg"
+          >
+            Login
+          </button>
+
+        </form>
+
+        <p className="text-center text-gray-900 font-medium mt-4">{msg}</p>
+
+      </div>
     </div>
   );
 }
