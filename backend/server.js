@@ -1,13 +1,13 @@
-import express from "express";
+import mongoose from"mongoose";
 
-const app = express();
-app.use(express.json());
+const connectDB=async()=>{
+  try{
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB Connected");
+  }catch(err){
+    console.log("DB Error:",err.message);
+    process.exit(1);
+  }
+};
 
-app.get("/", (req, res) => {
-  res.send("Backend running successfully (ES Module)");
-});
-
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+export default connectDB;
