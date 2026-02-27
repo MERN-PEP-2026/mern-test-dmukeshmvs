@@ -1,2 +1,37 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/ZroWLq75)
-# -mern-test-template
+# Task Manager (MERN Stack)
+
+A full-stack Task Management application built using the MERN stack (MongoDB, Express, React, Node.js).  
+Users can register, log in, create tasks, update task status, and delete tasks.  
+Frontend is styled using Tailwind CSS with a modern gradient UI.
+
+---
+
+## 🚀 Features
+
+### ✅ Authentication
+- User Registration
+- User Login
+- JWT-Based Authentication
+
+### ✅ Tasks
+- Create Task
+- View Tasks
+- Mark Task as Completed
+- Delete Task
+- Each user sees only their own tasks
+
+### ✅ Frontend (React + Tailwind)
+- Modern gradient UI
+- Register/Login pages
+- Task dashboard
+- Navbar with active highlights
+
+### ✅ Backend (Node + Express)
+- Task CRUD API
+- Protected routes using middleware
+- MongoDB database connection
+- Uses Mongoose models
+
+---
+
+## 📂 Project Structure
